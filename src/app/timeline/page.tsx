@@ -155,7 +155,10 @@ export default function Home() {
               <span>กลับหน้าแรก</span>
             </button>
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">Project Timeline</h1>
+          <div className="flex-1 flex justify-center">
+            <h1 className="text-3xl font-bold text-gray-900">Project Timeline</h1>
+          </div>
+          <div className="w-32"></div> {/* Spacer to balance the layout */}
         </div>
 
         {/* Tab UI */}
