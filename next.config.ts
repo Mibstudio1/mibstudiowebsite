@@ -3,7 +3,6 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
-    remotePatterns: [],
   },
   eslint: {
     ignoreDuringBuilds: true,
@@ -11,8 +10,15 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  serverExternalPackages: ['@prisma/client'],
-  /* config options here */
+  experimental: {
+    optimizePackageImports: ["@prisma/client"],
+  },
+  // Performance optimizations
+  swcMinify: true,
+  compress: true,
+  poweredByHeader: false,
+  // Disable telemetry
+  telemetry: false,
 };
 
 export default nextConfig;
