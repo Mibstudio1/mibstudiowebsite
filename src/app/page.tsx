@@ -6,27 +6,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
-      {/* Header */}
-      <div className="bg-black text-white py-4 px-6">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <img
-              src="/logo.png"
-              alt="MIB Studio Logo"
-              width="60"
-              height="60"
-              className="object-contain"
-            />
-            <div>
-              <h1 className="text-2xl font-bold">MIB Studio</h1>
-              <p className="text-sm text-gray-300">
-                Professional Architectural & Construction Services
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className="min-h-screen">
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-6 py-16">

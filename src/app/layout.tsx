@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navbar/Navbar";
 import ReduxProvider from "@/store/reduxProvider";
 import AuthEffectClient from "@/components/authenEffect/AuthenEffect";
 import "@/utils/fontAwesome";
+import NavbarWrapper from "@/components/navbar/NavbarWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,7 +37,7 @@ export default function RootLayout({
       >
         <ReduxProvider>
           <AuthEffectClient />
-          <Navbar />
+          <NavbarWrapper />
           <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-white">
             {children}
           </main>
