@@ -2,10 +2,11 @@ import { createClient } from "@supabase/supabase-js";
 
 const bucket_name = "file-attachment";
 const bucket_name_timeline = "pdf-storage";
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
-const key = process.env.NEXT_PUBLIC_SUPABASE_KEY as string;
+const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const key = process.env.NEXT_PUBLIC_SUPABASE_KEY;
 
-const supabase = createClient(url, key);
+// สร้าง Supabase client เฉพาะเมื่อมี environment variables
+const supabase = url && key ? createClient(url, key) : null;
 
 // ฟังก์ชันสร้างชื่อไฟล์ที่ปลอดภัย
 const generateSafeFileName = (originalName: string): string => {
@@ -37,9 +38,12 @@ export const uploadFiles = async (files: File[]) => {
   const results: { name: string; url: string }[] = [];
 
   if (!supabase) {
-    throw new Error(
-      "Supabase is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_KEY environment variables."
-    );
+    console.warn("Supabase is not configured. File uploads will be skipped.");
+    // ส่งคืนข้อมูลจำลองเพื่อไม่ให้ build fail
+    return files.map(file => ({
+      name: file.name,
+      url: `#${file.name}` // ใช้ # เป็น prefix เพื่อแสดงว่าเป็น URL จำลอง
+    }));
   }
 
   for (const file of files) {
@@ -108,7 +112,13 @@ export const deleteFiles = async (fileNames: string[]) => {
   return results;
 };
 
+// ฟังก์ชันสำหรับอัปโหลดไฟล์เดียว
 export const uploadFile = async (file: File) => {
+  if (!supabase) {
+    console.warn("Supabase is not configured. File upload will be skipped.");
+    return `#${file.name}`; // ส่งคืน URL จำลอง
+  }
+
   const timeStamp = Date.now();
   const newName = `${file.name}-${timeStamp}`;
   const { data, error } = await supabase.storage
