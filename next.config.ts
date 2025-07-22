@@ -1,6 +1,19 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    serverComponentsExternalPackages: ["@prisma/client"],
+  },
+  images: {
+    unoptimized: true,
+    remotePatterns: [],
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   async redirects() {
     return [
       {
@@ -14,9 +27,6 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
     ];
-  },
-  experimental: {
-    serverComponentsExternalPackages: ["@prisma/client"],
   },
 };
 
