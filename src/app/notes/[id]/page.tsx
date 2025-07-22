@@ -19,6 +19,7 @@ import {
   faIdCard,
   faExternalLinkAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 export default function NoteDetailPage({
   params,
@@ -91,40 +92,53 @@ export default function NoteDetailPage({
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white-50 to-white-100 py-8">
-      <div className="max-w-5xl mx-auto md:px-4">
+    <div className="min-h-screen bg-gradient-to-br from-white-50 to-white-100 py-4 sm:py-8">
+      {/* Back to Home Button */}
+      <div className="flex justify-start px-4 mb-4 sm:mb-6">
+        <Link
+          href="/"
+          className="bg-gradient-to-r from-gray-800 to-black text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:from-gray-700 hover:to-gray-900 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-2 text-sm sm:text-base"
+        >
+          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          กลับหน้าหลัก
+        </Link>
+      </div>
+
+      <div className="max-w-5xl mx-auto px-4 md:px-4">
         {/* Back Button */}
         <button
           onClick={handleBack}
-          className="mb-6 bg-white hover:bg-gray-50 text-gray-700 px-6 py-3 rounded-xl font-medium transition-all duration-300 flex items-center gap-3 shadow-md hover:shadow-lg border border-gray-200"
+          className="mb-4 sm:mb-6 bg-white hover:bg-gray-50 text-gray-700 px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-medium transition-all duration-300 flex items-center gap-2 sm:gap-3 shadow-md hover:shadow-lg border border-gray-200 text-sm sm:text-base"
         >
-          <FontAwesomeIcon icon={faArrowLeft} className="w-5 h-5" />
+          <FontAwesomeIcon icon={faArrowLeft} className="w-4 h-4 sm:w-5 sm:h-5" />
           กลับไปรายการบันทึก
         </button>
 
         {/* Note Detail Card */}
         <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
           {/* Header */}
-          <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white p-8 text-center">
-            <h1 className="text-xl md:text-4xl font-bold mb-4">{note.title}</h1>
-            <div className="flex justify-center gap-6 text-sm flex-wrap">
+          <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white p-4 sm:p-6 md:p-8 text-center">
+            <h1 className="text-lg sm:text-xl md:text-4xl font-bold mb-4">{note.title}</h1>
+            <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-6 text-xs sm:text-sm flex-wrap">
               <div className="flex items-center gap-2">
-                <FontAwesomeIcon icon={faCalendar} className="w-4 h-4" />
-                <span className="bg-white/20 px-3 py-1 rounded-full font-medium">
+                <FontAwesomeIcon icon={faCalendar} className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span className="bg-white/20 px-2 sm:px-3 py-1 rounded-full font-medium">
                   วันที่:{" "}
                   {new Date(note.createDate).toLocaleDateString("th-TH")}
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <FontAwesomeIcon icon={faIdCard} className="w-4 h-4" />
-                <span className="bg-white/20 px-3 py-1 rounded-full font-medium">
+                <FontAwesomeIcon icon={faIdCard} className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span className="bg-white/20 px-2 sm:px-3 py-1 rounded-full font-medium">
                   ID: {note.customerId}
                 </span>
               </div>
               {note.project && (
                 <div className="flex items-center gap-2">
-                  <FontAwesomeIcon icon={faFileText} className="w-4 h-4" />
-                  <span className="bg-white/20 px-3 py-1 rounded-full font-medium">
+                  <FontAwesomeIcon icon={faFileText} className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <span className="bg-white/20 px-2 sm:px-3 py-1 rounded-full font-medium">
                     โปรเจค: {note.project}
                   </span>
                 </div>
@@ -132,23 +146,23 @@ export default function NoteDetailPage({
             </div>
           </div>
 
-          <div className="md:p-8">
-            <div className="space-y-8">
+          <div className="p-4 sm:p-6 md:p-8">
+            <div className="space-y-6 sm:space-y-8">
               {/* Details */}
               {note.noteExpand && note.noteExpand.length > 0 && (
-                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 md:p-6 rounded-2xl border border-blue-200">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 sm:p-6 rounded-2xl border border-blue-200">
+                  <div className="flex items-center gap-3 mb-4 sm:mb-6">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-blue-600 rounded-lg flex items-center justify-center">
                       <FontAwesomeIcon
                         icon={faFileText}
-                        className="w-5 h-5 text-white"
+                        className="w-3 h-3 sm:w-5 sm:h-5 text-white"
                       />
                     </div>
                     <div>
-                      <h2 className="md:text-xl font-bold text-gray-900">
+                      <h2 className="text-base sm:text-lg md:text-xl font-bold text-gray-900">
                         Meeting Info
                       </h2>
-                      <h2 className="text-xs md:text-sm font-light text-gray-600">
+                      <h2 className="text-xs sm:text-sm font-light text-gray-600">
                         รายละเอียดการประชุม
                       </h2>
                     </div>

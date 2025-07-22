@@ -532,223 +532,225 @@ const DocumentManager = () => {
   };
 
   return (
-    <div className="rounded-3xl shadow-2xl border border-gray-200 bg-gradient-to-br from-gray-50 via-white to-gray-100 p-6 font-sans max-w-3xl mx-auto" style={{ fontFamily: 'Noto Sans Thai, sans-serif' }}>
-      {/* Header Bar */}
-      <div className="rounded-t-3xl bg-gradient-to-r from-gray-900 to-gray-800 px-8 pt-7 pb-5 mb-0">
-        <h1 className="text-white text-2xl font-extrabold tracking-tight mb-1 text-left">Document Management Tool</h1>
-        <div className="text-gray-300 text-sm font-normal text-left">เครื่องมือจัดการเอกสาร</div>
-      </div>
-      <div className="space-y-8 mt-0">
-        {/* Proposal Section */}
-        <section className="bg-white rounded-b-2xl border-x border-b border-gray-200 shadow p-5">
-          <h2 className="text-lg font-bold mb-4 text-black text-left">Proposal for Client <span className="font-normal text-gray-500">(ข้อเสนอสำหรับลูกค้า)</span></h2>
-          <div className="space-y-2">
-            <textarea
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-black bg-white focus:ring-2 focus:ring-black/30 focus:border-black/40 transition placeholder-gray-400 text-sm shadow-sm resize-none"
-              placeholder="Enter proposal details here / ใส่รายละเอียดข้อเสนอที่นี่ (สูงสุด 400 ตัวอักษร)"
-              value={proposals.join("\n")}
-              onChange={e => {
-                const text = e.target.value;
-                if (text.length <= 400) {
-                  setProposals(text.split("\n"));
-                }
-              }}
-              rows={6}
-              maxLength={400}
-            />
-            <div className="text-right text-xs text-gray-500 mt-1">
-              {proposals.join("\n").length}/400 ตัวอักษร
+    <div className="group">
+      <div className="rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 overflow-hidden backdrop-blur-sm bg-white/95">
+        {/* Header Bar */}
+        <div className="bg-gradient-to-r from-gray-800 to-gray-900 px-6 sm:px-8 lg:px-10 pt-6 sm:pt-7 pb-4 sm:pb-5">
+          <h1 className="text-white text-xl sm:text-2xl font-extrabold tracking-tight mb-1 text-left">Document Management Tool</h1>
+          <div className="text-gray-300 text-sm font-normal text-left">เครื่องมือจัดการเอกสาร</div>
+        </div>
+        <div className="p-6 sm:p-8 lg:p-10 space-y-6 sm:space-y-8">
+          {/* Proposal Section */}
+          <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-4 sm:p-5">
+            <h2 className="text-base sm:text-lg font-bold mb-4 text-black text-left">Proposal for Client <span className="font-normal text-gray-500">(ข้อเสนอสำหรับลูกค้า)</span></h2>
+            <div className="space-y-2">
+              <textarea
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-black bg-white focus:ring-2 focus:ring-black/30 focus:border-black/40 transition placeholder-gray-400 text-sm shadow-sm resize-none"
+                placeholder="Enter proposal details here / ใส่รายละเอียดข้อเสนอที่นี่ (สูงสุด 400 ตัวอักษร)"
+                value={proposals.join("\n")}
+                onChange={e => {
+                  const text = e.target.value;
+                  if (text.length <= 400) {
+                    setProposals(text.split("\n"));
+                  }
+                }}
+                rows={6}
+                maxLength={400}
+              />
+              <div className="text-right text-xs text-gray-500 mt-1">
+                {proposals.join("\n").length}/400 ตัวอักษร
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* Special Requests Section */}
-        <section className="bg-white rounded-2xl border border-gray-200 shadow p-5">
-          <h2 className="text-lg font-bold mb-4 text-black text-left">Special Requests <span className="font-normal text-gray-500">(ความต้องการพิเศษของลูกค้า)</span></h2>
-          <div className="space-y-2">
-            <textarea
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-black bg-white focus:ring-2 focus:ring-black/30 focus:border-black/40 transition placeholder-gray-400 text-sm shadow-sm resize-none"
-              placeholder="Enter special requests here / ใส่ความต้องการพิเศษที่นี่ (สูงสุด 400 ตัวอักษร)"
-              value={specialRequests}
-              onChange={e => {
-                if (e.target.value.length <= 400) {
-                  setSpecialRequests(e.target.value);
-                }
-              }}
-              rows={4}
-              maxLength={400}
-            />
-            <div className="text-right text-xs text-gray-500 mt-1">
-              {specialRequests.length}/400 ตัวอักษร
+          {/* Special Requests Section */}
+          <section className="bg-white rounded-2xl border border-gray-200 shadow p-5">
+            <h2 className="text-lg font-bold mb-4 text-black text-left">Special Requests <span className="font-normal text-gray-500">(ความต้องการพิเศษของลูกค้า)</span></h2>
+            <div className="space-y-2">
+              <textarea
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-black bg-white focus:ring-2 focus:ring-black/30 focus:border-black/40 transition placeholder-gray-400 text-sm shadow-sm resize-none"
+                placeholder="Enter special requests here / ใส่ความต้องการพิเศษที่นี่ (สูงสุด 400 ตัวอักษร)"
+                value={specialRequests}
+                onChange={e => {
+                  if (e.target.value.length <= 400) {
+                    setSpecialRequests(e.target.value);
+                  }
+                }}
+                rows={4}
+                maxLength={400}
+              />
+              <div className="text-right text-xs text-gray-500 mt-1">
+                {specialRequests.length}/400 ตัวอักษร
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* Additional Agreements Section */}
-        <section className="bg-white rounded-2xl border border-gray-200 shadow p-5">
-          <h2 className="text-lg font-bold mb-4 text-black text-left">Additional Agreements <span className="font-normal text-gray-500">(ข้อตกลงเพิ่มเติม)</span></h2>
-          <div className="space-y-2">
-            <textarea
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-black bg-white focus:ring-2 focus:ring-black/30 focus:border-black/40 transition placeholder-gray-400 text-sm shadow-sm resize-none"
-              placeholder="Enter additional agreements here / ใส่ข้อตกลงเพิ่มเติมที่นี่ (สูงสุด 400 ตัวอักษร)"
-              value={additionalAgreements}
-              onChange={e => {
-                if (e.target.value.length <= 400) {
-                  setAdditionalAgreements(e.target.value);
-                }
-              }}
-              rows={4}
-              maxLength={400}
-            />
-            <div className="text-right text-xs text-gray-500 mt-1">
-              {additionalAgreements.length}/400 ตัวอักษร
+          {/* Additional Agreements Section */}
+          <section className="bg-white rounded-2xl border border-gray-200 shadow p-5">
+            <h2 className="text-lg font-bold mb-4 text-black text-left">Additional Agreements <span className="font-normal text-gray-500">(ข้อตกลงเพิ่มเติม)</span></h2>
+            <div className="space-y-2">
+              <textarea
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-black bg-white focus:ring-2 focus:ring-black/30 focus:border-black/40 transition placeholder-gray-400 text-sm shadow-sm resize-none"
+                placeholder="Enter additional agreements here / ใส่ข้อตกลงเพิ่มเติมที่นี่ (สูงสุด 400 ตัวอักษร)"
+                value={additionalAgreements}
+                onChange={e => {
+                  if (e.target.value.length <= 400) {
+                    setAdditionalAgreements(e.target.value);
+                  }
+                }}
+                rows={4}
+                maxLength={400}
+              />
+              <div className="text-right text-xs text-gray-500 mt-1">
+                {additionalAgreements.length}/400 ตัวอักษร
+              </div>
             </div>
-          </div>
-        </section>
-        {/* Section Selection Checkbox */}
-        {/* ลบ block Section Selection Checkbox ที่รวมไว้ด้านบนออก */}
-        {/* Service Section */}
-        <section className="bg-white rounded-2xl border border-gray-200 shadow p-5">
-          <div className="flex items-center gap-2 mb-2">
-            <input
-              type="checkbox"
-              checked={selectedSections.service}
-              onChange={e => {
-                setSelectedSections(s => ({ ...s, service: e.target.checked }));
-                console.log(`Service section selected: ${e.target.checked}`);
-              }}
-            />
-            <span className="font-semibold text-base" style={{ color: '#111', fontWeight: 600 }}>รวมส่วนนี้ใน PDF</span>
-          </div>
-          <h2 className="text-lg font-bold mb-4 text-black text-left">Service Selection & File Upload <span className="font-normal text-gray-500">(เลือกบริการและอัปโหลดไฟล์รายละเอียด)</span></h2>
-          <div
-            className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer bg-white hover:bg-gray-100 transition"
-            onDrop={e => handleDrop(setServiceFiles, e)}
-            onDragOver={e => e.preventDefault()}
-          >
-            <span className="block text-gray-700 font-medium mb-1 text-sm">Drag & drop PDF files here <span className="text-gray-400">(ลากและวางไฟล์ PDF ที่นี่)</span></span>
-            <label className="underline text-blue-700 cursor-pointer font-semibold text-sm">
-              Select PDF files (เลือกไฟล์ PDF)
+          </section>
+          {/* Section Selection Checkbox */}
+          {/* ลบ block Section Selection Checkbox ที่รวมไว้ด้านบนออก */}
+          {/* Service Section */}
+          <section className="bg-white rounded-2xl border border-gray-200 shadow p-5">
+            <div className="flex items-center gap-2 mb-2">
               <input
-                type="file"
-                accept="application/pdf"
-                multiple
-                className="hidden"
-                onChange={e => handleFile(setServiceFiles)(e.target.files)}
+                type="checkbox"
+                checked={selectedSections.service}
+                onChange={e => {
+                  setSelectedSections(s => ({ ...s, service: e.target.checked }));
+                  console.log(`Service section selected: ${e.target.checked}`);
+                }}
               />
-            </label>
-            <FilePreview
-              files={serviceFiles}
-              onRemove={idx => removeFile(setServiceFiles, idx)}
-              group="service"
-              onUploadToDB={handleUploadToDB}
-              uploadedPDFs={uploadedPDFs}
-              onDeleteUploaded={handleDeleteUploadedPDF}
-              selectedUploadedPDFs={selectedUploadedPDFs}
-              onToggleSelection={toggleUploadedPDFSelection}
-              onSelectAllInGroup={selectAllInGroup}
-              onDeselectAllInGroup={deselectAllInGroup}
-            />
-          </div>
-        </section>
-        {/* Work Credits Section */}
-        <section className="bg-white rounded-2xl border border-gray-200 shadow p-5">
-          <div className="flex items-center gap-2 mb-2">
-            <input
-              type="checkbox"
-              checked={selectedSections.work}
-              onChange={e => {
-                setSelectedSections(s => ({ ...s, work: e.target.checked }));
-                console.log(`Work section selected: ${e.target.checked}`);
-              }}
-            />
-            <span className="font-semibold text-base" style={{ color: '#111', fontWeight: 600 }}>รวมส่วนนี้ใน PDF</span>
-          </div>
-          <h2 className="text-lg font-bold mb-4 text-black text-left">Work Credits <span className="font-normal text-gray-500">(เครดิตงาน)</span></h2>
-          <div
-            className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer bg-white hover:bg-gray-100 transition"
-            onDrop={e => handleDrop(setCreditFiles, e)}
-            onDragOver={e => e.preventDefault()}
-          >
-            <span className="block text-gray-700 font-medium mb-1 text-sm">Drag & drop PDF files here <span className="text-gray-400">(ลากและวางไฟล์ PDF ที่นี่)</span></span>
-            <label className="underline text-blue-700 cursor-pointer font-semibold text-sm">
-              Select PDF files (เลือกไฟล์ PDF เครดิตงาน)
+              <span className="font-semibold text-base" style={{ color: '#111', fontWeight: 600 }}>รวมส่วนนี้ใน PDF</span>
+            </div>
+            <h2 className="text-lg font-bold mb-4 text-black text-left">Service Selection & File Upload <span className="font-normal text-gray-500">(เลือกบริการและอัปโหลดไฟล์รายละเอียด)</span></h2>
+            <div
+              className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer bg-white hover:bg-gray-100 transition"
+              onDrop={e => handleDrop(setServiceFiles, e)}
+              onDragOver={e => e.preventDefault()}
+            >
+              <span className="block text-gray-700 font-medium mb-1 text-sm">Drag & drop PDF files here <span className="text-gray-400">(ลากและวางไฟล์ PDF ที่นี่)</span></span>
+              <label className="underline text-blue-700 cursor-pointer font-semibold text-sm">
+                Select PDF files (เลือกไฟล์ PDF)
+                <input
+                  type="file"
+                  accept="application/pdf"
+                  multiple
+                  className="hidden"
+                  onChange={e => handleFile(setServiceFiles)(e.target.files)}
+                />
+              </label>
+              <FilePreview
+                files={serviceFiles}
+                onRemove={idx => removeFile(setServiceFiles, idx)}
+                group="service"
+                onUploadToDB={handleUploadToDB}
+                uploadedPDFs={uploadedPDFs}
+                onDeleteUploaded={handleDeleteUploadedPDF}
+                selectedUploadedPDFs={selectedUploadedPDFs}
+                onToggleSelection={toggleUploadedPDFSelection}
+                onSelectAllInGroup={selectAllInGroup}
+                onDeselectAllInGroup={deselectAllInGroup}
+              />
+            </div>
+          </section>
+          {/* Work Credits Section */}
+          <section className="bg-white rounded-2xl border border-gray-200 shadow p-5">
+            <div className="flex items-center gap-2 mb-2">
               <input
-                type="file"
-                accept="application/pdf"
-                multiple
-                className="hidden"
-                onChange={e => handleFile(setCreditFiles)(e.target.files)}
+                type="checkbox"
+                checked={selectedSections.work}
+                onChange={e => {
+                  setSelectedSections(s => ({ ...s, work: e.target.checked }));
+                  console.log(`Work section selected: ${e.target.checked}`);
+                }}
               />
-            </label>
-            <FilePreview
-              files={creditFiles}
-              onRemove={idx => removeFile(setCreditFiles, idx)}
-              group="work"
-              onUploadToDB={handleUploadToDB}
-              uploadedPDFs={uploadedPDFs}
-              onDeleteUploaded={handleDeleteUploadedPDF}
-              selectedUploadedPDFs={selectedUploadedPDFs}
-              onToggleSelection={toggleUploadedPDFSelection}
-              onSelectAllInGroup={selectAllInGroup}
-              onDeselectAllInGroup={deselectAllInGroup}
-            />
-          </div>
-        </section>
-        {/* Certificates Section */}
-        <section className="bg-white rounded-2xl border border-gray-200 shadow p-5">
-          <div className="flex items-center gap-2 mb-2">
-            <input
-              type="checkbox"
-              checked={selectedSections.cert}
-              onChange={e => {
-                setSelectedSections(s => ({ ...s, cert: e.target.checked }));
-                console.log(`Cert section selected: ${e.target.checked}`);
-              }}
-            />
-            <span className="font-semibold text-base" style={{ color: '#111', fontWeight: 600 }}>รวมส่วนนี้ใน PDF</span>
-          </div>
-          <h2 className="text-lg font-bold mb-4 text-black text-left">Certificates & Related Documents <span className="font-normal text-gray-500">(ใบรับรอง และส่วนงานที่เกี่ยวข้อง)</span></h2>
-          <div
-            className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer bg-white hover:bg-gray-100 transition"
-            onDrop={e => handleDrop(setCertFiles, e)}
-            onDragOver={e => e.preventDefault()}
-          >
-            <span className="block text-gray-700 font-medium mb-1 text-sm">Drag & drop PDF files here <span className="text-gray-400">(ลากและวางไฟล์ PDF ที่นี่)</span></span>
-            <label className="underline text-blue-700 cursor-pointer font-semibold text-sm">
-              Select PDF files (เลือกไฟล์ PDF ใบรับรอง)
+              <span className="font-semibold text-base" style={{ color: '#111', fontWeight: 600 }}>รวมส่วนนี้ใน PDF</span>
+            </div>
+            <h2 className="text-lg font-bold mb-4 text-black text-left">Work Credits <span className="font-normal text-gray-500">(เครดิตงาน)</span></h2>
+            <div
+              className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer bg-white hover:bg-gray-100 transition"
+              onDrop={e => handleDrop(setCreditFiles, e)}
+              onDragOver={e => e.preventDefault()}
+            >
+              <span className="block text-gray-700 font-medium mb-1 text-sm">Drag & drop PDF files here <span className="text-gray-400">(ลากและวางไฟล์ PDF ที่นี่)</span></span>
+              <label className="underline text-blue-700 cursor-pointer font-semibold text-sm">
+                Select PDF files (เลือกไฟล์ PDF เครดิตงาน)
+                <input
+                  type="file"
+                  accept="application/pdf"
+                  multiple
+                  className="hidden"
+                  onChange={e => handleFile(setCreditFiles)(e.target.files)}
+                />
+              </label>
+              <FilePreview
+                files={creditFiles}
+                onRemove={idx => removeFile(setCreditFiles, idx)}
+                group="work"
+                onUploadToDB={handleUploadToDB}
+                uploadedPDFs={uploadedPDFs}
+                onDeleteUploaded={handleDeleteUploadedPDF}
+                selectedUploadedPDFs={selectedUploadedPDFs}
+                onToggleSelection={toggleUploadedPDFSelection}
+                onSelectAllInGroup={selectAllInGroup}
+                onDeselectAllInGroup={deselectAllInGroup}
+              />
+            </div>
+          </section>
+          {/* Certificates Section */}
+          <section className="bg-white rounded-2xl border border-gray-200 shadow p-5">
+            <div className="flex items-center gap-2 mb-2">
               <input
-                type="file"
-                accept="application/pdf"
-                multiple
-                className="hidden"
-                onChange={e => handleFile(setCertFiles)(e.target.files)}
+                type="checkbox"
+                checked={selectedSections.cert}
+                onChange={e => {
+                  setSelectedSections(s => ({ ...s, cert: e.target.checked }));
+                  console.log(`Cert section selected: ${e.target.checked}`);
+                }}
               />
-            </label>
-            <FilePreview
-              files={certFiles}
-              onRemove={idx => removeFile(setCertFiles, idx)}
-              group="cert"
-              onUploadToDB={handleUploadToDB}
-              uploadedPDFs={uploadedPDFs}
-              onDeleteUploaded={handleDeleteUploadedPDF}
-              selectedUploadedPDFs={selectedUploadedPDFs}
-              onToggleSelection={toggleUploadedPDFSelection}
-              onSelectAllInGroup={selectAllInGroup}
-              onDeselectAllInGroup={deselectAllInGroup}
-            />
-          </div>
-        </section>
-      </div>
-      {/* Export PDF Button */}
-      <div className="flex flex-col items-center gap-3 mt-10 mb-2">
-        <button
-          className="relative px-8 py-3 rounded-2xl bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white text-lg font-bold shadow-2xl hover:brightness-110 transition border border-black/80 focus:outline-none focus:ring-2 focus:ring-black/30 disabled:opacity-60 disabled:cursor-not-allowed"
-          onClick={handleExportPDF2}
-          disabled={isExporting}
-        >
-          {isExporting ? "Exporting..." : "Export PDF (รวบรวมเอกสารเป็นไฟล์เดียว)"}
-        </button>
+              <span className="font-semibold text-base" style={{ color: '#111', fontWeight: 600 }}>รวมส่วนนี้ใน PDF</span>
+            </div>
+            <h2 className="text-lg font-bold mb-4 text-black text-left">Certificates & Related Documents <span className="font-normal text-gray-500">(ใบรับรอง และส่วนงานที่เกี่ยวข้อง)</span></h2>
+            <div
+              className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer bg-white hover:bg-gray-100 transition"
+              onDrop={e => handleDrop(setCertFiles, e)}
+              onDragOver={e => e.preventDefault()}
+            >
+              <span className="block text-gray-700 font-medium mb-1 text-sm">Drag & drop PDF files here <span className="text-gray-400">(ลากและวางไฟล์ PDF ที่นี่)</span></span>
+              <label className="underline text-blue-700 cursor-pointer font-semibold text-sm">
+                Select PDF files (เลือกไฟล์ PDF ใบรับรอง)
+                <input
+                  type="file"
+                  accept="application/pdf"
+                  multiple
+                  className="hidden"
+                  onChange={e => handleFile(setCertFiles)(e.target.files)}
+                />
+              </label>
+              <FilePreview
+                files={certFiles}
+                onRemove={idx => removeFile(setCertFiles, idx)}
+                group="cert"
+                onUploadToDB={handleUploadToDB}
+                uploadedPDFs={uploadedPDFs}
+                onDeleteUploaded={handleDeleteUploadedPDF}
+                selectedUploadedPDFs={selectedUploadedPDFs}
+                onToggleSelection={toggleUploadedPDFSelection}
+                onSelectAllInGroup={selectAllInGroup}
+                onDeselectAllInGroup={deselectAllInGroup}
+              />
+            </div>
+          </section>
+        </div>
+        {/* Export PDF Button */}
+        <div className="flex flex-col items-center gap-3 mt-10 mb-2">
+          <button
+            className="relative px-8 py-3 rounded-2xl bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white text-lg font-bold shadow-2xl hover:brightness-110 transition border border-black/80 focus:outline-none focus:ring-2 focus:ring-black/30 disabled:opacity-60 disabled:cursor-not-allowed"
+            onClick={handleExportPDF2}
+            disabled={isExporting}
+          >
+            {isExporting ? "Exporting..." : "Export PDF (รวบรวมเอกสารเป็นไฟล์เดียว)"}
+          </button>
+        </div>
       </div>
     </div>
   );

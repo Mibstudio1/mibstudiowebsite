@@ -101,7 +101,7 @@ const PDFForm = ({ currentText, pdfForm, setPdfForm }: PDFFormProps) => {
         {/* Enhanced header with gradient */}
         <PdfFormHeader />
 
-        <div className="p-10 space-y-8">
+        <div className="p-6 sm:p-8 lg:p-10 space-y-8">
           {/* Project Name & Owner */}
           <ProjectNameNOwner
             currentText={currentText}

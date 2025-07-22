@@ -10,6 +10,7 @@ import Summary from "@/components/createNote/Summary";
 import PdfUpload from "@/components/createNote/PdfUpload";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 export default function EditNotePage({
   params,
@@ -155,23 +156,36 @@ export default function EditNotePage({
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Back to Home Button */}
+      <div className="flex justify-start p-4 sm:p-6">
+        <Link
+          href="/"
+          className="bg-gradient-to-r from-gray-800 to-black text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:from-gray-700 hover:to-gray-900 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-2 text-sm sm:text-base"
+        >
+          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          กลับหน้าหลัก
+        </Link>
+      </div>
+
       <div className="max-w-5xl mx-auto p-4">
         {/* Back Button */}
         <button
           onClick={handleBack}
-          className="mb-6 bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2"
+          className="mb-4 sm:mb-6 bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 sm:px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2 text-sm sm:text-base"
         >
           ← กลับไปดูรายละเอียด
         </button>
 
         {/* Header */}
-        <div className="bg-gradient-to-r from-gray-800 to-black rounded-t-2xl px-6 py-4 text-xl font-bold text-white shadow-lg">
+        <div className="bg-gradient-to-r from-gray-800 to-black rounded-t-2xl px-4 sm:px-6 py-3 sm:py-4 text-lg sm:text-xl font-bold text-white shadow-lg">
           แก้ไขบันทึกการประชุม
         </div>
 
         {/* Edit Form */}
         <form
-          className="bg-white border-2 border-gray-200 p-8 rounded-b-2xl space-y-8 shadow-xl"
+          className="bg-white border-2 border-gray-200 p-4 sm:p-6 lg:p-8 rounded-b-2xl space-y-6 sm:space-y-8 shadow-xl"
           onSubmit={handleSubmit}
         >
           <TopicData data={formData} setData={setFormData} />

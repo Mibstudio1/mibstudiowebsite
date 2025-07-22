@@ -37,32 +37,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* menu */}
-      <div className="relative">
-        <ul className="flex gap-6 relative">
-          {[
-            { href: "/timeline", label: "Timeline" },
-            { href: "/notes", label: "Client Note" },
-          ].map(({ href, label }) => (
-            <li key={href} className="relative">
-              <Link
-                href={href}
-                className={`relative pb-1 transition-colors duration-300 ${
-                  pathname === href
-                    ? "text-blue-400"
-                    : "text-white hover:text-blue-300"
-                }`}
-              >
-                {label}
-                {pathname === href && (
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-400 transition-all duration-500" />
-                )}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-
       {/* user info */}
       {user ? (
         <div className="flex flex-col md:flex-row md:items-center md:justify-center gap-4 w-full md:w-auto">

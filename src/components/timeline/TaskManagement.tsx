@@ -85,7 +85,7 @@ const TaskManagement = ({
           currentText={currentText}
         />
 
-        <div className="p-8">
+        <div className="p-6 sm:p-8 lg:p-10">
           {/* Category Tabs */}
           <CategoryTab
             taskOptions={categories}

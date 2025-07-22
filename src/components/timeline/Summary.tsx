@@ -25,7 +25,7 @@ const Summary = ({
         {/* Enhanced header */}
         <HeaderSummry />
 
-        <div className="p-10 space-y-8">
+        <div className="p-6 sm:p-8 lg:p-10 space-y-8">
           {/* Project Information */}
           <ProjectInformation currentText={currentText} pdfForm={pdfForm} />
 

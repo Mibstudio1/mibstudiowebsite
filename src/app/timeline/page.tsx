@@ -13,6 +13,7 @@ import { Room, Task } from "@/interfaces/timeline";
 import { useGetTimeline } from "@/hooks/useGetTimeline";
 // เพิ่ม import สำหรับหน้าใหม่
 import DocumentManager from "@/components/timeline/DocumentManager";
+import Link from "next/link";
 
 interface BuildingCost {
   rooms: Room[];
@@ -126,7 +127,7 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<'project' | 'document'>('project');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 relative">
+    <div className="min-h-screen bg-white relative">
       {/* Subtle pattern overlay */}
       <div
         className="absolute inset-0 opacity-30"
@@ -135,20 +136,33 @@ export default function Home() {
           backgroundSize: "24px 24px",
         }}
       ></div>
-      <div className="relative z-10 max-w-7xl mx-auto p-6 space-y-8">
+      <div className="relative z-10 max-w-7xl mx-auto p-4 sm:p-6 space-y-6 sm:space-y-8">
+        {/* Back to Home Button */}
+        <div className="flex justify-start mb-4 sm:mb-6">
+          <Link
+            href="/"
+            className="bg-gradient-to-r from-gray-800 to-black text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:from-gray-700 hover:to-gray-900 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-2 text-sm sm:text-base"
+          >
+            <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            กลับหน้าหลัก
+          </Link>
+        </div>
+
         {/* Tab UI */}
-        <div className="flex space-x-4 mb-8">
+        <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 mb-6 sm:mb-8">
           <button
-            className={`px-6 py-2 rounded-t-lg font-semibold border-b-2 transition-all duration-200 ${activeTab === 'project' ? 'border-black text-black bg-white' : 'border-transparent text-gray-400 bg-gray-100'}`}
+            className={`flex-1 sm:flex-none min-w-[200px] px-4 sm:px-6 py-2 rounded-t-lg font-semibold border-b-2 transition-all duration-200 ${activeTab === 'project' ? 'border-black text-black bg-white' : 'border-transparent text-gray-400 bg-gray-100'}`}
             onClick={() => setActiveTab('project')}
           >
-            เครื่องมือจัดการโครงการ
+            <span className="text-sm sm:text-base whitespace-nowrap">เครื่องมือจัดการโครงการ</span>
           </button>
           <button
-            className={`px-6 py-2 rounded-t-lg font-semibold border-b-2 transition-all duration-200 ${activeTab === 'document' ? 'border-black text-black bg-white' : 'border-transparent text-gray-400 bg-gray-100'}`}
+            className={`flex-1 sm:flex-none min-w-[200px] px-4 sm:px-6 py-2 rounded-t-lg font-semibold border-b-2 transition-all duration-200 ${activeTab === 'document' ? 'border-black text-black bg-white' : 'border-transparent text-gray-400 bg-gray-100'}`}
             onClick={() => setActiveTab('document')}
           >
-            เครื่องมือจัดการเอกสาร
+            <span className="text-sm sm:text-base whitespace-nowrap">เครื่องมือจัดการเอกสาร</span>
           </button>
         </div>
         {/* Tab Content */}

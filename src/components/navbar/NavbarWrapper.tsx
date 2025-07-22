@@ -5,7 +5,7 @@ import Navbar from "./Navbar";
 
 const NavbarWrapper = () => {
   const pathname = usePathname();
-  const hideOnPaths = ["/", "/login"];
+  const hideOnPaths = ["/", "/login", "/timeline"];
 
   if (hideOnPaths.includes(pathname)) {
     return null;
