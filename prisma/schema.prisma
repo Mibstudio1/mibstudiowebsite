@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  name      String
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  isActive  Boolean  @default(true)
+}
+
+model Customer {
+  id           Int            @id @default(autoincrement())
+  customerId   String         @unique
+  name         String
+  company      String
+  phone        String
+  address      String
+  createDate   DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  isActive     Boolean        @default(true)
+  customerNote CustomerNote[]
+}
+
+model CustomerNote {
+  id             Int              @id @default(autoincrement())
+  project        String
+  title          String
+  createDate     DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  date           String
+  isActive       Boolean          @default(true)
+  customerId     String
+  customer       Customer         @relation(fields: [customerId], references: [customerId])
+  noteAttachment NoteAttachment[]
+  attendees      Attendees[]
+  noteExpand     NoteExpand[]
+}
+
+model NoteAttachment {
+  id        Int          @id @default(autoincrement())
+  name      String?
+  url       String?
+  cusNote   CustomerNote @relation(fields: [cusNoteId], references: [id])
+  cusNoteId Int
+}
+
+model Attendees {
+  id             Int          @id @default(autoincrement())
+  name           String
+  role           String
+  customerNote   CustomerNote @relation(fields: [customerNoteId], references: [id])
+  customerNoteId Int
+}
+
+model NoteExpand {
+  id             Int          @id @default(autoincrement())
+  name           String?
+  description    String
+  conclude       String
+  customerNote   CustomerNote @relation(fields: [customerNoteId], references: [id])
+  customerNoteId Int
+}
+
+model TaskOption {
+  id       Int    @id @default(autoincrement())
+  name     String @unique
+  category String
+  title    String
+  subtitle String
+}
+
+model UploadPDF {
+  id         Int      @id @default(autoincrement())
+  name       String
+  group_file String
+  file_data  String? 
+  uploadDate DateTime @default(now())
+}
