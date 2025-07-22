@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 
-const PUBLIC_PATHS = ["/login", "/register", "/api", "/", "/timeline"];
+const PUBLIC_PATHS = ["/login", "/register", "/api"];
 
 const getSecretKey = () => {
   return new TextEncoder().encode(process.env.JWT_SECRET || "default-secret");
@@ -10,6 +10,8 @@ const getSecretKey = () => {
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  console.log("Middleware processing:", pathname);
 
   // Skip static files and Next.js internal routes
   if (
@@ -22,21 +24,25 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // Allow access to public paths (including home page and timeline)
+  // Allow access to public paths
   if (PUBLIC_PATHS.some((path) => pathname.startsWith(path))) {
+    console.log("Public path accessed:", pathname);
     return NextResponse.next();
   }
 
   const token = request.cookies.get("token")?.value;
 
   if (!token) {
+    console.log("No token found, redirecting to login from:", pathname);
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
   try {
     const { payload } = await jwtVerify(token, getSecretKey());
+    console.log("Valid JWT:", payload);
     return NextResponse.next();
   } catch (error) {
+    console.error("Invalid JWT:", error);
     // Clear invalid token
     const response = NextResponse.redirect(new URL("/login", request.url));
     response.cookies.delete("token");
@@ -46,7 +52,9 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/notes/:path*",
+    "/",
+    "/notes/:path*", 
+    "/timeline/:path*",
     "/((?!api|_next/static|_next/image|favicon.ico|login|register).*)",
   ],
 };

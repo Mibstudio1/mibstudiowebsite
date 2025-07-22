@@ -11,7 +11,6 @@ import { text } from "@/utils/lang";
 import { useGetValue } from "@/hooks/useGetValue";
 import { Room, Task } from "@/interfaces/timeline";
 import { useGetTimeline } from "@/hooks/useGetTimeline";
-import { useRouter } from "next/navigation";
 // เพิ่ม import สำหรับหน้าใหม่
 import DocumentManager from "@/components/timeline/DocumentManager";
 
@@ -34,17 +33,12 @@ interface ServiceItem {
 console.log = () => null;
 
 export default function Home() {
-  const router = useRouter();
   const [selectedTasks, setSelectedTasks] = useState<number[]>([]);
   // const [pdfUrl, setPdfUrl] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
   // Default tasks for working with (without saving to database)
   const [workingTasks, setWorkingTasks] = useState<Task[]>([]);
   const { taskOptions } = useGetTimeline();
-
-  const handleHomeClick = () => {
-    router.push("/");
-  };
 
   // Building cost estimator data
   const [buildingCostData, setBuildingCostData] = useState<BuildingCost>({
@@ -142,25 +136,6 @@ export default function Home() {
         }}
       ></div>
       <div className="relative z-10 max-w-7xl mx-auto p-6 space-y-8">
-        {/* Header with Home Button */}
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center space-x-4">
-            <button
-              onClick={handleHomeClick}
-              className="bg-black hover:bg-gray-800 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 flex items-center space-x-2"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
-              <span>กลับหน้าแรก</span>
-            </button>
-          </div>
-          <div className="flex-1 flex justify-center">
-            <h1 className="text-3xl font-bold text-gray-900">Project Timeline</h1>
-          </div>
-          <div className="w-32"></div> {/* Spacer to balance the layout */}
-        </div>
-
         {/* Tab UI */}
         <div className="flex space-x-4 mb-8">
           <button

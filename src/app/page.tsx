@@ -1,39 +1,26 @@
 "use client";
 
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
-import { memo } from "react";
+import Link from "next/link";
 
-const HomePage = memo(() => {
-  const router = useRouter();
-
-  const handleNavigate = (path: string) => {
-    if (path === "/notes") {
-      // For Client Note, redirect to login first
-      router.push("/login");
-    } else {
-      // For Timeline, go directly
-      router.push(path);
-    }
-  };
-
+export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       {/* Header */}
-      <div className="bg-black text-white py-6 shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center">
-            <Image
+      <div className="bg-black text-white py-4 px-6">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <img
               src="/logo.png"
               alt="MIB Studio Logo"
-              width={80}
-              height={80}
+              width="60"
+              height="60"
               className="object-contain"
-              priority
             />
-            <div className="ml-6 text-center">
-              <h1 className="text-3xl font-bold">MIB Studio</h1>
-              <p className="text-gray-300 text-lg">
+            <div>
+              <h1 className="text-2xl font-bold">MIB Studio</h1>
+              <p className="text-sm text-gray-300">
                 Professional Architectural & Construction Services
               </p>
             </div>
@@ -42,101 +29,138 @@ const HomePage = memo(() => {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Welcome to MIB Studio
+            ยินดีต้อนรับสู่ MIB Studio
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Choose your preferred service to get started with our professional 
-            architectural and construction management tools.
+            เลือกบริการที่คุณต้องการใช้งาน
           </p>
         </div>
 
         {/* Service Cards */}
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {/* Timeline Card */}
-          <div 
-            className="bg-white rounded-2xl shadow-2xl border border-gray-200 p-8 hover:shadow-3xl transition-all duration-300 transform hover:scale-105 cursor-pointer group"
-            onClick={() => handleNavigate("/timeline")}
-          >
-            <div className="text-center">
-              <div className="w-20 h-20 bg-gradient-to-br from-gray-800 to-black rounded-full flex items-center justify-center mx-auto mb-6 group-hover:from-gray-700 group-hover:to-gray-800 transition-all duration-300">
-                <svg 
-                  className="w-10 h-10 text-white" 
-                  fill="none" 
-                  stroke="currentColor" 
+          {/* Timeline Service */}
+          <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+            <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-8 text-white">
+              <div className="flex items-center justify-center mb-4">
+                <svg
+                  className="w-16 h-16"
+                  fill="none"
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" 
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Project Timeline
-              </h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                Manage your construction projects with our comprehensive timeline tool. 
-                Track progress, manage tasks, and generate professional reports.
+              <h3 className="text-2xl font-bold mb-2">Timeline Management</h3>
+              <p className="text-blue-100">
+                จัดการโครงการและติดตามความคืบหน้า
               </p>
-              <div className="bg-gradient-to-r from-gray-800 to-black text-white px-8 py-3 rounded-lg font-semibold hover:from-gray-700 hover:to-gray-800 transition-all duration-300 transform hover:scale-105">
-                Get Started
-              </div>
+            </div>
+            <div className="p-8">
+              <ul className="space-y-3 text-gray-600 mb-8">
+                <li className="flex items-center">
+                  <svg className="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  จัดการงานและกิจกรรม
+                </li>
+                <li className="flex items-center">
+                  <svg className="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  ติดตามความคืบหน้า
+                </li>
+                <li className="flex items-center">
+                  <svg className="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  สร้างรายงานและเอกสาร
+                </li>
+              </ul>
+              <Link
+                href="/timeline"
+                className="block w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-6 rounded-lg font-semibold text-center hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105"
+              >
+                เข้าสู่ Timeline
+              </Link>
             </div>
           </div>
 
-          {/* Client Note Card */}
-          <div 
-            className="bg-white rounded-2xl shadow-2xl border border-gray-200 p-8 hover:shadow-3xl transition-all duration-300 transform hover:scale-105 cursor-pointer group"
-            onClick={() => handleNavigate("/notes")}
-          >
-            <div className="text-center">
-              <div className="w-20 h-20 bg-gradient-to-br from-gray-800 to-black rounded-full flex items-center justify-center mx-auto mb-6 group-hover:from-gray-700 group-hover:to-gray-800 transition-all duration-300">
-                <svg 
-                  className="w-10 h-10 text-white" 
-                  fill="none" 
-                  stroke="currentColor" 
+          {/* Client Note Service */}
+          <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+            <div className="bg-gradient-to-r from-gray-800 to-black p-8 text-white">
+              <div className="flex items-center justify-center mb-4">
+                <svg
+                  className="w-16 h-16"
+                  fill="none"
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" 
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                   />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Client Notes
-              </h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                Create and manage detailed client notes and meeting records. 
-                Secure access with customer authentication for privacy.
+              <h3 className="text-2xl font-bold mb-2">Client Note</h3>
+              <p className="text-gray-300">
+                จัดการบันทึกและข้อมูลลูกค้า
               </p>
-              <div className="bg-gradient-to-r from-gray-800 to-black text-white px-8 py-3 rounded-lg font-semibold hover:from-gray-700 hover:to-gray-800 transition-all duration-300 transform hover:scale-105">
-                Login Required
-              </div>
+            </div>
+            <div className="p-8">
+              <ul className="space-y-3 text-gray-600 mb-8">
+                <li className="flex items-center">
+                  <svg className="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  บันทึกข้อมูลลูกค้า
+                </li>
+                <li className="flex items-center">
+                  <svg className="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  จัดการเอกสารและไฟล์
+                </li>
+                <li className="flex items-center">
+                  <svg className="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  สร้างรายงานและสรุป
+                </li>
+              </ul>
+              <Link
+                href="/login"
+                className="block w-full bg-gradient-to-r from-gray-800 to-black text-white py-3 px-6 rounded-lg font-semibold text-center hover:from-gray-700 hover:to-gray-900 transition-all duration-300 transform hover:scale-105"
+              >
+                เข้าสู่ระบบ Client Note
+              </Link>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Footer */}
-      <div className="bg-black text-white py-8 mt-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-gray-300">
-            © 2024 MIB Studio. All rights reserved.
-          </p>
+        {/* Additional Info */}
+        <div className="mt-16 text-center">
+          <div className="bg-gray-50 rounded-xl p-8 max-w-2xl mx-auto">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">
+              เกี่ยวกับ MIB Studio
+            </h3>
+            <p className="text-gray-600 leading-relaxed">
+              MIB Studio เป็นแพลตฟอร์มที่ออกแบบมาเพื่อช่วยให้การจัดการโครงการสถาปัตยกรรมและการก่อสร้างเป็นไปอย่างมีประสิทธิภาพ 
+              เราให้บริการเครื่องมือที่ครบครันสำหรับการติดตามความคืบหน้า จัดการเอกสาร และดูแลลูกค้า
+            </p>
+          </div>
         </div>
       </div>
     </div>
   );
-});
-
-HomePage.displayName = 'HomePage';
-
-export default HomePage;
+}
