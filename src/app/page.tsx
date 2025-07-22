@@ -2,8 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { memo } from "react";
 
-export default function Home() {
+const HomePage = memo(() => {
   const router = useRouter();
 
   const handleNavigate = (path: string) => {
@@ -28,6 +29,7 @@ export default function Home() {
               width={80}
               height={80}
               className="object-contain"
+              priority
             />
             <div className="ml-6 text-center">
               <h1 className="text-3xl font-bold">MIB Studio</h1>
@@ -133,4 +135,8 @@ export default function Home() {
       </div>
     </div>
   );
-}
+});
+
+HomePage.displayName = 'HomePage';
+
+export default HomePage;

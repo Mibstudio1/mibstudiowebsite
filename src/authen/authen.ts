@@ -16,7 +16,6 @@ export const useAuthenEffect = () => {
 
       // Check if token is valid
       if (!isTokenValid(token)) {
-        console.log("Token is invalid or expired");
         return;
       }
 
@@ -29,8 +28,8 @@ export const useAuthenEffect = () => {
     // Check token immediately
     checkToken();
     
-    // Check token every 3 seconds for better performance
-    const interval = setInterval(checkToken, 3000);
+    // Check token every 5 seconds for better performance
+    const interval = setInterval(checkToken, 5000);
 
     return () => clearInterval(interval);
   }, [dispatch]);
