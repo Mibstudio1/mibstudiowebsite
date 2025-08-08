@@ -109,19 +109,6 @@ const BuildingCostEstimator = ({
       totalConstructionCost + designFee + additionalBuildingCost;
     setMibCost(designFeePercent);
 
-    // Debug: Log cost calculation
-    console.log("BuildingCostEstimator Debug:", {
-      rooms: rooms.length,
-      totalArea,
-      totalConstructionCost,
-      designFeePercent,
-      designFee,
-      hasMultipleBuildings,
-      additionalBuildingCount,
-      additionalBuildingCost,
-      grandTotal,
-    });
-
     return {
       totalArea,
       totalConstructionCost,

@@ -17,7 +17,8 @@ function getMibPercent(services: any[] = []) {
     const val = parseFloat(s.price);
     return sum + (isNaN(val) ? 0 : val);
   }, 0);
-  return Math.round(sum * 100) / 100;
+  const effective = sum > 0 ? sum : 7; // ดีฟอลต์ 7% ถ้ายังไม่เลือกบริการ
+  return Math.round(effective * 100) / 100;
 }
 
 const ExportPdf = ({
@@ -39,19 +40,6 @@ const ExportPdf = ({
   const [floorPlanImage, setFloorPlanImage] = useState<string>("");
   const [isCapturing, setIsCapturing] = useState(false);
   const mibPercent = getMibPercent(pdfForm?.services);
-
-  // Debug: Log price data
-  console.log("ExportPdf Debug:", {
-    rooms: rooms?.length,
-    totalArea,
-    totalConstructionCost,
-    designFee,
-    grandTotal,
-    hasMultipleBuildings,
-    additionalBuildingCount,
-    additionalBuildingCost,
-    mibPercent,
-  });
 
   // Function to capture FloorPlan as image
   const captureFloorPlan = async () => {

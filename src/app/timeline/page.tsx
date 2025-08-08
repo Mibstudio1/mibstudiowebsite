@@ -119,8 +119,10 @@ export default function Home() {
       return acc + (isNaN(percent) ? 0 : percent);
     }, 0);
 
-    // คืนค่าเป็น string โดยไม่จำกัดทศนิยม แต่ตัดทศนิยมที่ไม่จำเป็นออก
-    return total.toString();
+    // ถ้ายังไม่ได้เลือกบริการใดๆ ให้ใช้ค่าเริ่มต้น 7%
+    const effectiveTotal = total > 0 ? total : 7;
+
+    return effectiveTotal.toString();
   };
 
   // เพิ่ม state สำหรับ Tab
