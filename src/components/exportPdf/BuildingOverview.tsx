@@ -15,6 +15,18 @@ const BuildingOverview: FC<BuildingOverviewProps> = ({
   designFee,
   grandTotal,
 }) => {
+  // Debug: Log price data in BuildingOverview
+  console.log("BuildingOverview Debug:", {
+    rooms: rooms?.length,
+    totalArea,
+    totalConstructionCost,
+    designFee,
+    grandTotal,
+    hasMultipleBuildings,
+    additionalBuildingCount,
+    additionalBuildingCost,
+    mibPercent,
+  });
   return (
     <div
       style={{

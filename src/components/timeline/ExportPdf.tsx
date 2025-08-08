@@ -32,11 +32,26 @@ const ExportPdf = ({
   designFee,
   grandTotal,
   hasMultipleBuildings,
+  additionalBuildingCount,
+  additionalBuildingCost,
   workingTasks = [],
 }: ExportPdfProps) => {
   const [floorPlanImage, setFloorPlanImage] = useState<string>("");
   const [isCapturing, setIsCapturing] = useState(false);
   const mibPercent = getMibPercent(pdfForm?.services);
+
+  // Debug: Log price data
+  console.log("ExportPdf Debug:", {
+    rooms: rooms?.length,
+    totalArea,
+    totalConstructionCost,
+    designFee,
+    grandTotal,
+    hasMultipleBuildings,
+    additionalBuildingCount,
+    additionalBuildingCost,
+    mibPercent,
+  });
 
   // Function to capture FloorPlan as image
   const captureFloorPlan = async () => {
@@ -166,6 +181,8 @@ const ExportPdf = ({
                 totalArea={totalArea}
                 totalConstructionCost={totalConstructionCost}
                 hasMultipleBuildings={hasMultipleBuildings}
+                additionalBuildingCount={additionalBuildingCount}
+                additionalBuildingCost={additionalBuildingCost}
                 mibPercent={mibPercent}
                 designFee={designFee}
                 grandTotal={grandTotal}

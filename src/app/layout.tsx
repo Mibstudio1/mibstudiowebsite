@@ -33,6 +33,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
+       
         style={{ backgroundColor: "white" }}
       >
         <ReduxProvider>
@@ -43,6 +44,7 @@ export default function RootLayout({
           </main>
         </ReduxProvider>
       </body>
+    
     </html>
   );
 }

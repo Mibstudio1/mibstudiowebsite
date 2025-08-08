@@ -225,6 +225,8 @@ export default function Home() {
                 grandTotal={buildingCostData.grandTotal}
                 mibCost="3"
                 hasMultipleBuildings={buildingCostData.hasMultipleBuildings}
+                additionalBuildingCount={buildingCostData.additionalBuildingCount}
+                additionalBuildingCost={buildingCostData.additionalBuildingCost}
                 workingTasks={workingTasks}
               />
             </div>

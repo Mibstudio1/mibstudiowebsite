@@ -56,6 +56,8 @@ export interface ExportPdfProps {
   grandTotal?: number;
   mibCost?: string;
   hasMultipleBuildings?: boolean;
+  additionalBuildingCount?: number;
+  additionalBuildingCost?: number;
   workingTasks?: Task[];
 }
 
